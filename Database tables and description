@@ -1,0 +1,66 @@
+***************************Database contents*********************************
+
+Database name : autoeval
++--------------------+
+| Tables_in_autoeval |
++--------------------+
+| assignments        |
+| evaluation_results |
+| students           |
+| submissions        |
+| teachers           |
++--------------------+
+
+assignments(stores posted assignments):
++----------------------+-------------+------+-----+---------+----------------+
+| Field                | Type        | Null | Key | Default | Extra          |
++----------------------+-------------+------+-----+---------+----------------+
+| id                   | int         | NO   | PRI | NULL    | auto_increment |
+| name                 | varchar(50) | NO   |     | NULL    |                |
+| details              | text        | YES  |     | NULL    |                |
+| last_submission_date | date        | YES  |     | NULL    |                |
+| teacher_id           | int         | NO   |     | NULL    |                |
++----------------------+-------------+------+-----+---------+----------------+
+
+submissions(stores student submissions):
++-----------------+--------------+------+-----+-------------------+-------------------+
+| Field           | Type         | Null | Key | Default           | Extra             |
++-----------------+--------------+------+-----+-------------------+-------------------+
+| id              | int          | NO   | PRI | NULL              | auto_increment    |
+| assignment_id   | int          | YES  | MUL | NULL              |                   |
+| email           | varchar(255) | YES  |     | NULL              |                   |
+| file_location   | varchar(255) | YES  |     | NULL              |                   |
+| submission_date | timestamp    | YES  |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED |
++-----------------+--------------+------+-----+-------------------+-------------------+
+
+evaluation_results(stores evaluation results):
++---------------------+--------------+------+-----+-------------------+-------------------+
+| Field               | Type         | Null | Key | Default           | Extra             |
++---------------------+--------------+------+-----+-------------------+-------------------+
+| id                  | int          | NO   | PRI | NULL              | auto_increment    |
+| assignment_id       | int          | YES  | MUL | NULL              |                   |
+| question            | text         | YES  |     | NULL              |                   |
+| answer              | text         | YES  |     | NULL              |                   |
+| probability_correct | float        | YES  |     | NULL              |                   |
+| is_correct          | tinyint(1)   | YES  |     | NULL              |                   |
+| created_at          | timestamp    | YES  |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED |
+| submission_email    | varchar(255) | YES  |     | NULL              |                   |
++---------------------+--------------+------+-----+-------------------+-------------------+
+
+students(stores the names of the students who have an account,this has to be done manually with the database, a login page wont be provided):
++----------+--------------+------+-----+---------+----------------+
+| Field    | Type         | Null | Key | Default | Extra          |
++----------+--------------+------+-----+---------+----------------+
+| id       | int          | NO   | PRI | NULL    | auto_increment |
+| username | varchar(255) | NO   |     | NULL    |                |
+| password | varchar(255) | NO   |     | NULL    |                |
++----------+--------------+------+-----+---------+----------------+
+
+teachers(stores the names of the teachers who have an account,this has to be done manually with the database, a login page wont be provided):
++----------+--------------+------+-----+---------+----------------+
+| Field    | Type         | Null | Key | Default | Extra          |
++----------+--------------+------+-----+---------+----------------+
+| id       | int          | NO   | PRI | NULL    | auto_increment |
+| username | varchar(255) | NO   |     | NULL    |                |
+| password | varchar(255) | NO   |     | NULL    |                |
++----------+--------------+------+-----+---------+----------------+
